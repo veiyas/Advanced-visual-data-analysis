@@ -1,19 +1,23 @@
 file = open("data.txt", "r")
 data = file.read()
-print("Attempts per person/computer: " + str(round(len(data)/60)))
+
 
 n_computer = 0
 n_person = 0
 
-for i in range(0,round(len(data)/60)):
-    substr = data[i*60:i*60+60]
+attempts = round(len(data)/60)
+print("Attempts per person/computer: " + str(attempts))
+i = 0
+while i < len(data):
+    substr = data[i:i+60]
     heads_part = substr.count("0") / 60
-    tails_part = substr.count("1") / 60
+    tails_part = 1 - heads_part
 
-    if 0.49 < heads_part < 0.51 and 0.49 < tails_part < 0.51:
+    if 0.48 < heads_part < 0.52:
         n_person += 1
     else:
         n_computer += 1
+    i += attempts
 
-print("Real people: " + str(n_person))
+print("\nReal people: " + str(n_person))
 print("Computers: " + str(n_computer))
