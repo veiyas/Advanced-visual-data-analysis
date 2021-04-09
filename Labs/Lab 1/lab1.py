@@ -1,13 +1,13 @@
-file = open("data.txt", "r")
-data = file.read()
-
+data = open("data.txt", "r").read()
 
 n_computer = 0
 n_person = 0
 
 attempts = round(len(data)/60)
-print("Attempts per person/computer: " + str(attempts))
+print("\nAttempts per person/computer: " + str(attempts))
 i = 0
+
+# Analyse the 60 attempts corresponding to each "person"
 while i < len(data):
     substr = data[i:i+60]
     heads_part = substr.count("0") / 60
@@ -19,5 +19,8 @@ while i < len(data):
         n_computer += 1
     i += attempts
 
-print("\nReal people: " + str(n_person))
+    # Debugging helper
+    print("Heads: " + str(heads_part) + ", Tails: " + str(tails_part))
+
+print("Real people: " + str(n_person))
 print("Computers: " + str(n_computer))
