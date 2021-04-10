@@ -2,12 +2,11 @@
 Trying to spot humans using the Wald--Wolfowitz runs test
 '''
 import matplotlib.pyplot as plt
+import pandas
 import math
-data = open("data.txt", "r").read().splitlines()
+from pandas.plotting import parallel_coordinates
 
-# plt.plot([1, 2, 3, 4])
-# plt.ylabel('some numbers')
-# plt.show()
+data = open("data.txt", "r").read().splitlines()
 
 row = 1
 for sequence in data:
@@ -30,7 +29,13 @@ for sequence in data:
 
     # print(mean_num_runs, variance_num_runs, num_runs)
     error = (num_runs - mean_num_runs) / math.sqrt(variance_num_runs)
-    # plt.scatter(error, 1)
+    # plt.scatter(error, num_zeros / num_attempts)
+    # pc_data = pandas.DataFrame([num_runs, num_ones])
+    pc_data = pandas.DataFrame(
+        {'num_runs': [num_runs], 'num_ones': [num_ones], 'num_zeros': [num_zeros], 'error': [error], 'dummy': [0]})
+    # print(pc_data)
+
+    parallel_coordinates(pc_data, 'dummy')
 
     if abs(error) > 3:
         print(error, row)
