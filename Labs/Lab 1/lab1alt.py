@@ -35,7 +35,7 @@ for sequence in data:
         {'num_runs': [num_runs], 'num_ones': [num_ones], 'num_zeros': [num_zeros], 'error': [error], 'dummy': [0]})
     # print(pc_data)
 
-    parallel_coordinates(pc_data, 'dummy')
+    # parallel_coordinates(pc_data, 'dummy')
 
     if abs(error) > 3:
         print(error, row)
