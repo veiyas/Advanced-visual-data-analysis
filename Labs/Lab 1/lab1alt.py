@@ -30,6 +30,8 @@ for sequence in data:
     # print(mean_num_runs, variance_num_runs, num_runs)
     error = (num_runs - mean_num_runs) / math.sqrt(variance_num_runs)
     # plt.scatter(error, num_zeros / num_attempts)
+    plt.scatter(error, 1)
+    plt.xlabel('Runs error')
     # pc_data = pandas.DataFrame([num_runs, num_ones])
     pc_data = pandas.DataFrame(
         {'num_runs': [num_runs], 'num_ones': [num_ones], 'num_zeros': [num_zeros], 'error': [error], 'dummy': [0]})
