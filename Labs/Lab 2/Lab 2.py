@@ -15,7 +15,7 @@ test = df.filter(items=['GazePointX(px)', 'GazePointY(px)']).values
 # data = np.array([df['GazeEventDuration(mS)'][1:], df['GazePointX(px)'][1:], df['GazePointY(px)'][1:]])
 
 # clustering = OPTICS(min_samples=10, xi = 0.10).fit(test)
-clustering = DBSCAN(eps=65, min_samples=10).fit(test)
+clustering = DBSCAN(eps=62, min_samples=14).fit(test)
 
 fig = plt.figure()
 ax = fig.add_subplot(111, projection='3d')
