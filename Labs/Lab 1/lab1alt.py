@@ -65,4 +65,6 @@ for sequence in data:
 print("Negative runs: " + str(neg_counter))
 print("Postive runs: " + str(pos_counter))
 print("Definitely fake runs: " + str(fake_counter))
+
 plt.show()
+

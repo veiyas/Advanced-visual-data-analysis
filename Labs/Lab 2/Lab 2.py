@@ -35,7 +35,8 @@ clustering = DBSCAN(eps=62, min_samples=13).fit(test)
 
 df['Cluster'] = clustering.labels_
 df.plot.scatter(x='GazePointX(px)', y='GazePointY(px)', s=0.05*df['GazeEventDuration(mS)'],
-    c='Cluster', cmap='Dark2', alpha=0.6, edgecolors='none')
+    c='Cluster', cmap=plt.cm.get_cmap("Dark2", 7), alpha=0.6, edgecolors='none')
+
 # df.plot(x='GazePointX(px)', y='GazePointY(px)', c='RdBu', alpha=0.8)
 
 # df.plot(x='RecordingTimestamp', y='Cluster')
