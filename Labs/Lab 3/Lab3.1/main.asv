@@ -7,7 +7,38 @@ imHSV = rgb2hsv(im);
 [V_hist, ~] = histcounts(reshape(imHSV(:,:,3), 1, size(imHSV,1)*size(imHSV,2)), [0:1/100:1]);
 
 BW = edge(rgb2gray(im), 'canny');
-[houghRes,T,R] = hough(BW,'RhoResolution', 0.5, 'Theta', -90:0.5:89);
+[houghRes,T,R] = hough(BW, 'Theta', -90:0.5:89);
+
+lbpTest = extractLBPFeatures(rgb2gray(im));
+
 
 %%
-S =
+chosenBasePrefix = 11;
+allPathsPrefix = ['010203040506070809101112'];
+paths = erase(allPathsPrefix, int2str(chosenBasePrefix));
+
+S = get_features(imread(strcat(int2str(chosenBasePrefix), '.jpg')));
+baseFVec = get_feature_vector(S);
+
+pathSuffix = '.jpg';
+fullPath = '';
+
+lowestDiffs = [];
+for i = 1:2:size(paths,2)
+    fullPath = strcat(paths(i:i+1), pathSuffix);
+    S = get_features(imread(fullPath));
+    
+    fVec = get_feature_vector(S);
+    lowestDiffs((i+1)/2,:) = [norm(baseFVec - fVec)/1000]
+end
+
+[B, I] = sort(lowestDiffs);
+I = I + I >= chosenBasePrefix
+
+
+%%
+function [feature_vector] = get_feature_vector(S)
+    feature_vector = [S.H S.S S.V S.H_mean S.S_mean S.V_mean S.H_std S.S_std S.V_std S.LBP];
+end
+
+
