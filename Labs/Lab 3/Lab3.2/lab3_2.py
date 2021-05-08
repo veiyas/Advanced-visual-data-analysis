@@ -43,11 +43,11 @@ nltk.download('punkt')
 tokenizer = nltk.data.load('tokenizers/punkt/english.pickle')
 texts = [tokenizer.tokenize(text) for text in texts]
 
-texts = [remove_punctuation(sentences) for sentences in texts]
-texts = [make_lower(sentences) for sentences in texts]
+texts_norm = [remove_punctuation(sentences) for sentences in texts]
+texts_norm = [make_lower(sentences) for sentences in texts_norm]
 
 # Replacing the words with numbers and storing the words in a dictionary
-texts_numbers = copy.deepcopy(texts)
+texts_numbers = copy.deepcopy(texts_norm)
 dictionary = replace_words_with_numbers(texts_numbers)
 
 # Compare the sequences
