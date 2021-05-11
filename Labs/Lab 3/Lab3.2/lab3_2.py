@@ -57,9 +57,6 @@ for idx1 in range(len(texts_numbers)-1):
   text1 = texts_numbers[idx1]
   for idx2 in range(idx1+1, len(texts_numbers)):
     text2 = texts_numbers[idx2]
-  
-    if text1 == text2:
-      continue
 
     for i, sentence1 in enumerate(text1):
       # Skip short sentences---these are mostly just noise,
@@ -71,8 +68,6 @@ for idx1 in range(len(texts_numbers)-1):
       try:
         text2_find_sentence_idx = text2.index(sentence1)
         print(f'[between text {idx1+1} and {idx2+1}] {texts[idx1][i]}')
-        # print(f'[Match between text {idx1+1} and {idx2+1}] {texts[idx1][i]}  ===  {texts[idx2][text2_find_sentence_idx]}')
-        # print(f'\t= {texts[idx2][text2_find_sentence_idx]}')
       except:
         pass
 
