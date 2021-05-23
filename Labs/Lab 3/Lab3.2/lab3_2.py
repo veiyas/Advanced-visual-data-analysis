@@ -2,6 +2,7 @@ import string
 import copy
 import nltk.data
 from nltk.tokenize import PunktSentenceTokenizer
+import time
 
 
 def remove_punctuation(sentence_list):
@@ -29,6 +30,7 @@ def replace_words_with_numbers(texts):
       text[i] = ' '.join(word_indices)
   return dictionary
   
+start_time = time.time()
 
 texts = []
 for i in range(1,11):
@@ -71,3 +73,5 @@ for idx1 in range(len(texts_numbers)-1):
       except:
         pass
 
+end_time = time.time()
+print(f'Duration: {end_time - start_time}')
